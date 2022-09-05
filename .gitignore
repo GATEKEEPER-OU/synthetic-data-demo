@@ -226,3 +226,8 @@ $RECYCLE.BIN/
 
 
 # Customs
+#datasets/ # TODO what formats?
+models/*.h5
+#out/ # TODO what formats?
+statics/*.csv
+statics/*.json
