@@ -5,16 +5,19 @@ from datetime import datetime
 n_patients = 10 # TODO get from the stdin
 n_days = 100 # TODO get from the stdin
 
-event_model = 'models/event_model.h5'
-timing_model = 'models/timing_model.h5'
+event_model = os.path.join('models', 'event_model.h5')
+timing_model = os.path.join('models', 'timing_model.h5')
 
-events_vocab = 'statics/events_vocab.json'
-timings_vocab = 'statics/timings_vocab.json'
+events_vocab = os.path.join('statics', 'events_vocab.json')
+timings_vocab = os.path.join('statics', 'timings_vocab.json')
 
-codings_file = 'statics/codings.csv'
+codings_file = os.path.join('statics', 'codings.csv')
 
 timestamp = datetime.now()
-output_dir = 'out/generated/%d' % timestamp
+
+# This is the directory that holds the files that are to be evaluated
+# Probably need another to hold the "real" files
+output_dir = os.path.join('out', 'generated', timestamp.strftime('%Y%m%d%H%M%S'))
 os.makedirs(output_dir)
 
 tool = SyntheticDataGenerator(
