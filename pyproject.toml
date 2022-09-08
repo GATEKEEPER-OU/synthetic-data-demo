@@ -2,7 +2,10 @@
 name = "synthetic-data-demo"
 version = "0.1.0"
 description = ""
-authors = ["Riccardo Pala <riccardo.pietro.pala@gmail.com>"]
+authors = [
+  "Audrey Ekuban <audrey.ekuban@open.ac.uk>",
+  "Riccardo Pala <riccardo.pala@open.ac.uk>"
+]
 readme = "README.md"
 packages = [{include = "synthetic_data_demo"}]
 

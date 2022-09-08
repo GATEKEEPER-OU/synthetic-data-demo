@@ -226,8 +226,9 @@ $RECYCLE.BIN/
 
 
 # Customs
-datasets/*.csv
+datasets/processed/*.csv
 models/*.h5
 #out/ # TODO what formats?
+out/generated
+transfer/generated
 statics/*.csv
-statics/*.json

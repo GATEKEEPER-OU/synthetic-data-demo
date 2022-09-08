@@ -1,15 +1,16 @@
-from synthetic_data.generator.generator import SyntheticDataGenerator
 import os
+import sys
+
+fpath = os.path.join(os.path.dirname(__file__), "..", "..", "synthetic-data")
+fpath = os.path.abspath(fpath)
+sys.path.append(fpath)
+
+from synthetic_data.generator.generator import SyntheticDataGenerator
+
 from datetime import datetime
 
-n_patients = 10 # TODO get from the stdin
+n_patients = 2 # TODO get from the stdin
 n_days = 100 # TODO get from the stdin
-
-event_model = os.path.join('models', 'event_model.h5')
-timing_model = os.path.join('models', 'timing_model.h5')
-
-events_vocab = os.path.join('statics', 'events_vocab.json')
-timings_vocab = os.path.join('statics', 'timings_vocab.json')
 
 codings_file = os.path.join('statics', 'codings.csv')
 
@@ -21,12 +22,21 @@ output_dir = os.path.join('out', 'generated', timestamp.strftime('%Y%m%d%H%M%S')
 os.makedirs(output_dir)
 
 tool = SyntheticDataGenerator(
-  event_model, timing_model, events_vocab, timings_vocab, codings_file
+  codings_file
 )
 
 print("Test one arg")
 tool.generate(output_dir, n_patients)
 print()
+
+
+# Simulation of file transfer.
+#
+print('Transfering files....')
+# output_dir = "C:\\Users\\abe29\\SAM-GK-SYSTEM\\code2\\synthetic-data-demo\\out\\generated\\20220908164424"
+transfer_dir = os.path.join('transfer', 'generated')
+tool.transfer(output_dir, transfer_dir)
+print('End of files transfer')
 
 #print("Test two args")
 #tool.generate(n_patients, n_days)
