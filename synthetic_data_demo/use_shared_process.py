@@ -1,4 +1,10 @@
-from synthetic_data.share.share import SyntheticDataShare
+import os
+import sys
+fpath = os.path.join(os.path.dirname(__file__), "..", "..", "synthetic-data")
+fpath = os.path.abspath(fpath)
+sys.path.append(fpath)
+
+from synthetic_data.shared.shared import SyntheticDataShared
 import os
 from datetime import datetime
 
@@ -10,10 +16,10 @@ timestamp = datetime.now()
 input_dir = os.path.join('transfer', 'generated')
 
 # This is the directory that holds the processed files that are to be evaluated
-output_dir = os.path.join('transfer', 'processeed', timestamp.strftime('%Y%m%d%H%M%S'))
+output_dir = os.path.join('transfer', 'processed', timestamp.strftime('%Y%m%d%H%M%S'))
 os.makedirs(output_dir)
 
-tool = SyntheticDataShare(
+tool = SyntheticDataShared(
   codings_file
 )
 
@@ -22,5 +28,7 @@ tool.process_generated(input_dir, output_dir)
 
 # Simulation of file transfer.
 #
+print('Transfering files to evaluator....')
 transfer_dir = os.path.join('datasets', 'processed')
 tool.transfer(output_dir, transfer_dir)
+print('End of files transfer')

@@ -32,7 +32,7 @@ print()
 
 # Simulation of file transfer.
 #
-print('Transfering files....')
+print('Transfering files to shared....')
 # output_dir = "C:\\Users\\abe29\\SAM-GK-SYSTEM\\code2\\synthetic-data-demo\\out\\generated\\20220908164424"
 transfer_dir = os.path.join('transfer', 'generated')
 tool.transfer(output_dir, transfer_dir)
