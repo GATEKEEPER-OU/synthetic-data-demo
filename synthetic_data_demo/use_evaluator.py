@@ -29,3 +29,11 @@ report_file = os.path.join('datasets', 'report',timestamp.strftime('%Y%m%d%H%M%S
 tool = SyntheticDataEvaluator(n_days = n_days)
 
 tool.evaluate_processed(dataset_dir, real_dir, fake_dir, report_file)
+
+# Simulation of file transfer.
+#
+#real_dir = os.path.join('C:\\Users\\abe29\\SAM-GK-SYSTEM\\code2\\synthetic-data-demo\\datasets\\real\\20220909100943')
+print('Transfering files to shared....')
+transfer_dir = os.path.join('transfer', 'evaluated')
+tool.transfer(real_dir, transfer_dir)
+print('End of files transfer')
