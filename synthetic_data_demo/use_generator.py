@@ -10,9 +10,7 @@ from synthetic_data.generator.generator import SyntheticDataGenerator
 from datetime import datetime
 
 n_patients = 2 # TODO get from the stdin
-n_days = 100 # TODO get from the stdin
-
-codings_file = os.path.join('statics', 'codings.csv')
+n_days = 2 # TODO get from the stdin
 
 timestamp = datetime.now()
 
@@ -21,7 +19,7 @@ timestamp = datetime.now()
 output_dir = os.path.join('out', 'generated', timestamp.strftime('%Y%m%d%H%M%S'))
 os.makedirs(output_dir)
 
-tool = SyntheticDataGenerator(n_patients, n_days=1)
+tool = SyntheticDataGenerator(n_patients, n_days=n_days)
 
 print("Test one arg")
 tool.generate(output_dir)
