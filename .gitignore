@@ -226,10 +226,5 @@ $RECYCLE.BIN/
 
 
 # Customs
-datasets/processed/*.csv
-models/*.h5
+*.csv
 #out/ # TODO what formats?
-out/generated
-transfer/generated
-transfer/processed
-statics/*.csv

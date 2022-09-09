@@ -5,10 +5,8 @@ fpath = os.path.abspath(fpath)
 sys.path.append(fpath)
 
 from synthetic_data.shared.shared import SyntheticDataShared
-import os
-from datetime import datetime
 
-codings_file = os.path.join('statics', 'codings.csv')
+from datetime import datetime
 
 timestamp = datetime.now()
 
@@ -19,9 +17,7 @@ input_dir = os.path.join('transfer', 'generated')
 output_dir = os.path.join('transfer', 'processed', timestamp.strftime('%Y%m%d%H%M%S'))
 os.makedirs(output_dir)
 
-tool = SyntheticDataShared(
-  codings_file
-)
+tool = SyntheticDataShared()
 
 # Process the generated files for evaluation
 tool.process_generated(input_dir, output_dir)

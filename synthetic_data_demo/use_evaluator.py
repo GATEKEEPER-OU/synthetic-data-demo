@@ -1,9 +1,17 @@
+import os
+import sys
+fpath = os.path.join(os.path.dirname(__file__), "..", "..", "synthetic-data")
+fpath = os.path.abspath(fpath)
+sys.path.append(fpath)
+
 from synthetic_data.evaluator.evaluator import SyntheticDataEvaluator
 
-import os
+from datetime import datetime
 
-dataset = "/a/dataset/path" # TODO get from the stdin
-codings_file = os.path.join('statics', 'codings.csv')
+n_days = 1 # TODO get from the stdin
+# dataset = '' N # TODO get from the stdin. Not sure about this
+
+dataset_dir = os.path.join('datasets', 'processed')
 
 timestamp = datetime.now()
 
@@ -12,17 +20,12 @@ real_dir = os.path.join('datasets', 'real', timestamp.strftime('%Y%m%d%H%M%S'))
 os.makedirs(real_dir)
 
 # This is the directory that holds the files that are fake
-fake_dir = os.path.join('datasets', 'real', timestamp.strftime('%Y%m%d%H%M%S'))
+fake_dir = os.path.join('datasets', 'fake', timestamp.strftime('%Y%m%d%H%M%S'))
 os.makedirs(fake_dir)
 
 # This is the directory that holds reports
-report_dir = os.path.join('datasets', 'report', timestamp.strftime('%Y%m%d%H%M%S'))
-os.makedirs(report_dir)
+report_file = os.path.join('datasets', 'report',timestamp.strftime('%Y%m%d%H%M%S') + ".csv")
 
-tool = SyntheticDataEvaluator(
-  codings_file
-)
+tool = SyntheticDataEvaluator(n_days = n_days)
 
-print("Test one arg")
-tool.evaluate_processed(dataset, real_dir, fake_dir, report_dir)
-print()
+tool.evaluate_processed(dataset_dir, real_dir, fake_dir, report_file)
