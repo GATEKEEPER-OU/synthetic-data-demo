@@ -15,7 +15,7 @@ def main(n_patients, n_days):
     
     timestamp = datetime.now()
 
-    # This is the directory that holds the files that are to be evaluated
+    # For this demo, this is the directory that holds the files that are to be evaluated
     output_dir = os.path.join('out', 'generated', timestamp.strftime('%Y%m%d%H%M%S'))
     os.makedirs(output_dir)
 
@@ -28,4 +28,4 @@ def main(n_patients, n_days):
 if __name__ == "__main__":
     # n_patients, n_days
     # The UX is out of scope
-    main(5, 5)
+    main(1, 1)

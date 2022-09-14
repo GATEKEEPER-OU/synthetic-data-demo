@@ -224,7 +224,9 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,macos,python
 
-
-# Customs
 *.csv
 #out/ # TODO what formats?
+# Customs - Generator
+models/*/*/*.h5
+models/*/*/*.json
+models/*/*/*.csv
