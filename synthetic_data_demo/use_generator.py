@@ -22,7 +22,7 @@ def main(n_patients, n_days):
     tool = SyntheticDataGenerator(n_patients, n_days)
 
     print("Generating Data")
-    tool.generate(output_dir, model_dir)
+    tool.generate(model_dir, output_dir)
     print()
 
 if __name__ == "__main__":
