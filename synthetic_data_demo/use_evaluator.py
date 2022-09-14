@@ -8,8 +8,11 @@ sys.path.append(fpath)
 # We have 3 separate methods. Easier for testing and future decoupling
 def main(n_days, dataset):
     from synthetic_data.evaluator.evaluator import SyntheticDataEvaluator
-    import os
-
+    import os   
+    
+    codings_dir = os.path.join('statics', 'codings', '1')
+    evaluate_dir = os.path.join('statics', 'confidential', '1')
+    
     # The generated data
     input_dir = os.path.join('out', 'generated', dataset)
 
@@ -38,10 +41,10 @@ def main(n_days, dataset):
     tool = SyntheticDataEvaluator(n_days)
 
     # Process the generated files
-    tool.process_generated(input_dir, processed_dir)
+    tool.process_generated(codings_dir, input_dir, processed_dir)
 
     # Evaluate the processed files
-    tool.evaluate_processed(processed_dir, real_dir, fake_dir, report_file)
+    tool.evaluate_processed(evaluate_dir, processed_dir, real_dir, fake_dir, report_file)
 
     # Evaluate the processed files
     tool.postprocess_evaluated(real_dir, output_dir)
