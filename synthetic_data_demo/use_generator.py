@@ -10,7 +10,9 @@ def main(n_patients, n_days):
     from synthetic_data.generator.generator import SyntheticDataGenerator
     from datetime import datetime
     import os
-
+    
+    model_dir =  os.path.join('models', '1')
+    
     timestamp = datetime.now()
 
     # This is the directory that holds the files that are to be evaluated
@@ -20,7 +22,7 @@ def main(n_patients, n_days):
     tool = SyntheticDataGenerator(n_patients, n_days)
 
     print("Generating Data")
-    tool.generate(output_dir)
+    tool.generate(output_dir, model_dir)
     print()
 
 if __name__ == "__main__":
