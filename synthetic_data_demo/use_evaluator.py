@@ -4,36 +4,48 @@ fpath = os.path.join(os.path.dirname(__file__), "..", "..", "synthetic-data")
 fpath = os.path.abspath(fpath)
 sys.path.append(fpath)
 
-from synthetic_data.evaluator.evaluator import SyntheticDataEvaluator
+# Subject to testing
+# We have 3 separate methods. Easier for testing and future decoupling
+def main(n_days, dataset):
+    from synthetic_data.evaluator.evaluator import SyntheticDataEvaluator
+    import os
 
-from datetime import datetime
+    # The generated data
+    input_dir = os.path.join('out', 'generated', dataset)
 
-n_days = 1 # TODO get from the stdin
-# dataset = '' N # TODO get from the stdin. Not sure about this
+    output_dir = os.path.join('out', 'evaluated_real', dataset)
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
 
-dataset_dir = os.path.join('datasets', 'processed')
+    # This is the directory that holds the processed files
+    processed_dir = os.path.join('datasets', 'processed', dataset)
+    if not os.path.exists(processed_dir):
+        os.makedirs(processed_dir)
 
-timestamp = datetime.now()
+    # This is the directory that holds the files that are real
+    real_dir = os.path.join('datasets', 'real', dataset)
+    if not os.path.exists(real_dir):
+        os.makedirs(real_dir)
 
-# This is the directory that holds the files that are real
-real_dir = os.path.join('datasets', 'real', timestamp.strftime('%Y%m%d%H%M%S'))
-os.makedirs(real_dir)
+    # This is the directory that holds the files that are fake
+    fake_dir = os.path.join('datasets', 'fake', dataset)
+    if not os.path.exists(fake_dir):
+        os.makedirs(fake_dir)
 
-# This is the directory that holds the files that are fake
-fake_dir = os.path.join('datasets', 'fake', timestamp.strftime('%Y%m%d%H%M%S'))
-os.makedirs(fake_dir)
+    # This is the directory that holds reports. Should exist.
+    report_file = os.path.join('datasets', 'report', dataset + ".csv")
+   
+    tool = SyntheticDataEvaluator(n_days)
 
-# This is the directory that holds reports
-report_file = os.path.join('datasets', 'report',timestamp.strftime('%Y%m%d%H%M%S') + ".csv")
+    # Process the generated files
+    tool.process_generated(input_dir, processed_dir)
 
-tool = SyntheticDataEvaluator(n_days = n_days)
+    # Evaluate the processed files
+    tool.evaluate_processed(processed_dir, real_dir, fake_dir, report_file)
 
-tool.evaluate_processed(dataset_dir, real_dir, fake_dir, report_file)
+    # Evaluate the processed files
+    tool.postprocess_evaluated(real_dir, output_dir)
 
-# Simulation of file transfer.
-#
-#real_dir = os.path.join('C:\\Users\\abe29\\SAM-GK-SYSTEM\\code2\\synthetic-data-demo\\datasets\\real\\20220909100943')
-print('Transfering files to shared....')
-transfer_dir = os.path.join('transfer', 'evaluated')
-tool.transfer(real_dir, transfer_dir)
-print('End of files transfer')
+if __name__ == "__main__":
+    # n_days, directory
+    main(1, '20220913102512')

@@ -230,3 +230,4 @@ $RECYCLE.BIN/
 models/*/*/*.h5
 models/*/*/*.json
 models/*/*/*.csv
+statics/*/*/*.csv
