@@ -4,14 +4,13 @@ fpath = os.path.join(os.path.dirname(__file__), "..", "..", "synthetic-data")
 fpath = os.path.abspath(fpath)
 sys.path.append(fpath)
 
-# Subject to testing
 # We have 3 separate methods. Easier for testing and future decoupling
 def main(n_days, dataset):
     from synthetic_data.evaluator.evaluator import SyntheticDataEvaluator
     import os   
     
-    codings_dir = os.path.join('statics', 'codings', '1')
-    evaluate_dir = os.path.join('statics', 'confidential', '1')
+    codings_dir = os.path.join('statics', '1', 'codings')
+    evaluate_dir = os.path.join('statics', '1', 'confidential')
     
     # The generated data
     input_dir = os.path.join('out', 'generated', dataset)
@@ -51,4 +50,4 @@ def main(n_days, dataset):
 
 if __name__ == "__main__":
     # n_days, directory
-    main(1, '20220913102512')
+    main(1, '20220914101527')

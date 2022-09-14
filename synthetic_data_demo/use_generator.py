@@ -16,7 +16,7 @@ def main(n_patients, n_days):
     timestamp = datetime.now()
 
     # For this demo, this is the directory that holds the files that are to be evaluated
-    output_dir = os.path.join('out', 'generated', timestamp.strftime('%Y%m%d%H%M%S'))
+    output_dir = os.path.join('out', 'generated', timestamp.strftime('%Y%m%d%H%M'))
     os.makedirs(output_dir)
 
     tool = SyntheticDataGenerator(n_patients, n_days)
